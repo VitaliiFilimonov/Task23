@@ -5,10 +5,15 @@ import java.util.Hashtable;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class PhoneDirectory {
+    private static final Logger LOGGER = LogManager.getLogger(PhoneDirectory.class);
     Hashtable<String, String> listOfNumber = new Hashtable<String, String>();
     Enumeration allPhones;
     Scanner terminal = new Scanner(System.in);
+
 
     public void addPhoneNumberAndName() { //добавить номер и имя
         String phoneNumber = enterPhoneNumber();
@@ -18,7 +23,8 @@ public class PhoneDirectory {
         }
         String name = enterName();
         listOfNumber.put(phoneNumber, name);
-        System.out.println("Запись добавлена! ");
+        //System.out.println("Запись добавлена! ");
+        LOGGER.info("Запись добавлена!");
     }
 
     public void findPhoneNumber() { // найти по номеру
@@ -35,7 +41,8 @@ public class PhoneDirectory {
         String phoneNumber = enterPhoneNumber();
         if(!listOfNumber.isEmpty()){
             listOfNumber.remove(phoneNumber);
-            System.out.println("Запись удалена! ");
+            //System.out.println("Запись удалена! ");
+            LOGGER.info("Запись удалена!");
         }else{
             System.out.println("Таблица пуста! ");
         }
@@ -109,14 +116,20 @@ public class PhoneDirectory {
         int command = 0;
         while (command != 5) {
             System.out.println("Введите номер команды: ");
-            command = terminal.nextInt();
-            commandSwitch(command);
-            System.out.println("Команды: \n" +
-                    "1 - add phoneNumber, name \n" +
-                    "2 - find phoneNumber \n" +
-                    "3 - delete phoneNumber \n" +
-                    "4 - list \n" +
-                    "5 - exit");
+            if (terminal.hasNextInt()){
+                command = terminal.nextInt();
+                commandSwitch(command);
+                System.out.println("Команды: \n" +
+                        "1 - add phoneNumber, name \n" +
+                        "2 - find phoneNumber \n" +
+                        "3 - delete phoneNumber \n" +
+                        "4 - list \n" +
+                        "5 - exit");
+            }else {
+                System.out.println("Это не число!");
+                break;
+            }
+
         }
     }
 

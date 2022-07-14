@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" >
+    <xs:element name="employees" type="employees" />
+    <xs:element name="offices" type="offices" />
+
+    <xs:complexType name="employees">
+        <xs:sequence>
+            <xs:element name="firstName" type="xs:string" minOccurs="0" />
+            <xs:element name="lastName" type="xs:string" minOccurs="0" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="offices">
+        <xs:sequence>
+            <xs:element name="number" type="xs:int"  minOccurs="0"/>
+            <xs:element name="nameOfDirector" type="xs:string" minOccurs="0"  />
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
+
+<!--Сделай схему xsd небольшую и с помощью консольной утилиты xjc сгенерируй java-классы
+xjc AAA.xsd-->

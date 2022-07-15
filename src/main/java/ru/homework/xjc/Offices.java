@@ -6,7 +6,7 @@
 //
 
 
-package ru.homework;
+package ru.homework.xjc;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

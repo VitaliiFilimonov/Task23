@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Employees>
+                
+    <employee>
+                        
+        <name>Petr</name>
+                        
+        <job>Junior Software Developer</job>
+                    
+        <office>1</office>
+    </employee>
+                
+    <employee>
+                        
+        <name>Max</name>
+                        
+        <job>Middle Software Developer</job>
+                    
+        <office>1</office>
+    </employee>
+    
+</Employees>

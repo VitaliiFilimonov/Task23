@@ -1,0 +1,6 @@
+<www:employees xmlns:www="www">
+  <!--Optional:-->
+  <www:firstName>string</www:firstName>
+  <!--Optional:-->
+  <www:lastName>string</www:lastName>
+</www:employees>

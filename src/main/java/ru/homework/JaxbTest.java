@@ -16,11 +16,11 @@ public class JaxbTest {
         try{
             jaxbContext = JAXBContext.newInstance(Employees.class);
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-            Employees employee = (Employees) jaxbUnmarshaller.unmarshal(xmlFile);
+            Employees employees = (Employees) jaxbUnmarshaller.unmarshal(xmlFile);
 
             Marshaller marshaller = jaxbContext.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-            marshaller.marshal(employee, System.out);
+            marshaller.marshal(employees, new File("/home/user/Task22/JaxbTest1.xml"));
         }
         catch (Exception e){
             e.printStackTrace();

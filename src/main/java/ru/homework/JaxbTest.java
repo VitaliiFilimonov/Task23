@@ -12,15 +12,23 @@ import java.io.StringReader;
 public class JaxbTest {
     public static void main(String[] args) {
         JAXBContext jaxbContext;
-        File xmlFile = new File("/home/user/Task22/JaxbTest.xml");
+        File xmlFile = new File("JaxbTest.xml");
         try{
             jaxbContext = JAXBContext.newInstance(Employees.class);
-            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-            Employees employees = (Employees) jaxbUnmarshaller.unmarshal(xmlFile);
+            Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+            Employees employees = (Employees) unmarshaller.unmarshal(xmlFile);
 
-            Marshaller marshaller = jaxbContext.createMarshaller();
-            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-            marshaller.marshal(employees, new File("/home/user/Task22/JaxbTest1.xml"));
+//            Marshaller marshaller = jaxbContext.createMarshaller();
+//            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+//            marshaller.marshal(employees, new File("JaxbTest1.xml"));
+//            marshaller.marshal(employees, System.out);
+
+
+
+            System.out.println(employees.toString());
+
+
+
         }
         catch (Exception e){
             e.printStackTrace();

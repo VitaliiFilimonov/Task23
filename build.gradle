@@ -22,7 +22,9 @@ dependencies {
     // https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api
     implementation group: 'javax.xml.bind', name: 'jaxb-api', version: '2.2.4'
 
-
+    implementation group: 'org.eclipse.persistence', name: 'org.eclipse.persistence.moxy',
+            version: '2.7.3'
+//Thanks for using https://jar-download.com
 
 }
 

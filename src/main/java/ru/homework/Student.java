@@ -1,5 +1,9 @@
 package ru.homework;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Student {
     private String name;
     private int age;
@@ -10,6 +14,7 @@ public class Student {
         return id;
     }
 
+    @XmlElement
     public void setId(int id) {
         this.id = id;
     }
@@ -19,6 +24,7 @@ public class Student {
         return name;
     }
 
+    @XmlElement
     public void setName(String name) {
         this.name = name;
     }
@@ -27,6 +33,7 @@ public class Student {
         return age;
     }
 
+    @XmlElement
     public void setAge(int age) {
         this.age = age;
     }
@@ -35,6 +42,7 @@ public class Student {
         return language;
     }
 
+    @XmlElement
     public void setLanguage(String language) {
         this.language = language;
     }

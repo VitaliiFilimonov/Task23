@@ -11,12 +11,18 @@ import org.apache.logging.log4j.Logger;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import ru.phonebook.model.HashtableRecordStorage;
+import ru.phonebook.model.IRecordStorage;
 
 import java.io.File;
 import java.io.IOException;
 
 public class PhoneDirectory {
     private static final Logger LOGGER = LogManager.getLogger(PhoneDirectory.class);
+    //IRecordStorage recordStorage = new HashtableRecordStorage();
+
+
+
     Hashtable<String, String> listOfNumber = new Hashtable<String, String>();
     Enumeration allPhones;
     Scanner terminal = new Scanner(System.in);

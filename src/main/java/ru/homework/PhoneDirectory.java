@@ -13,6 +13,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import ru.phonebook.model.HashtableRecordStorage;
 import ru.phonebook.model.IRecordStorage;
+import ru.phonebook.model.Record;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,21 +22,18 @@ public class PhoneDirectory {
     private static final Logger LOGGER = LogManager.getLogger(PhoneDirectory.class);
     IRecordStorage recordStorage = new HashtableRecordStorage();
 
-
-
-    Hashtable<String, String> listOfNumber = new Hashtable<String, String>();
-    Enumeration allPhones;
     Scanner terminal = new Scanner(System.in);
 
 
     public void addPhoneNumberAndName() { //добавить номер и имя
         String phoneNumber = enterPhoneNumber();
-        while(listOfNumber.containsKey(phoneNumber)){
+        while(recordStorage.findRecordByPhone(phoneNumber)){
             System.out.println("Запись уже создана! Повторите ввод номера: ");
             phoneNumber = enterPhoneNumber();
         }
         String name = enterName();
-        listOfNumber.put(phoneNumber, name);
+        Record record = new Record(phoneNumber, name);
+        recordStorage.addRecord(record);
         //System.out.println("Запись добавлена! ");
         LOGGER.info("Запись добавлена!");
     }
@@ -122,7 +120,7 @@ public class PhoneDirectory {
     public void start() {
         String filePath = "/home/user/Task22/JsonPhoneDirectory.json";
         File file = new File(filePath);
-
+        recordStorage.
 
         System.out.println("Команды: \n" +
                 "1 - add phoneNumber, name \n" +
@@ -158,6 +156,7 @@ public class PhoneDirectory {
     }
 
     public static void main(String[] args) {
+
         PhoneDirectory p1 = new PhoneDirectory();
         p1.start();
     }

@@ -19,11 +19,13 @@ public class HashtableRecordStorage implements IRecordStorage{
     }
 
     @Override
-    public void findRecord(Record record) {
-        if (listOfNumber.containsKey(record.getPhone())) {
-            LOGGER.info("Найденное поле \n" + " Имя: " + listOfNumber.get(record.getPhone())
-                    + ", Номер телефона: " + record.getPhone());
+    public boolean findRecordByPhone(String phone) {
+        if (listOfNumber.containsKey(phone)) {
+            LOGGER.info("Найденное поле \n" + " Имя: " + listOfNumber.get(phone)
+                    + ", Номер телефона: " + phone);
+            return true;
         }
+        return false;
     }
 
     @Override

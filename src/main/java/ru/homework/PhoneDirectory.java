@@ -5,8 +5,15 @@ import java.util.Hashtable;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
+import com.fasterxml.jackson.databind.SerializationFeature;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
+import java.io.File;
+import java.io.IOException;
 
 public class PhoneDirectory {
     private static final Logger LOGGER = LogManager.getLogger(PhoneDirectory.class);
@@ -107,6 +114,10 @@ public class PhoneDirectory {
     }
 
     public void start() {
+        String filePath = "/home/user/Task22/JsonPhoneDirectory.json";
+        File file = new File(filePath);
+
+
         System.out.println("Команды: \n" +
                 "1 - add phoneNumber, name \n" +
                 "2 - find phoneNumber \n" +
@@ -125,6 +136,13 @@ public class PhoneDirectory {
                         "3 - delete phoneNumber \n" +
                         "4 - list \n" +
                         "5 - exit");
+                try{
+                    ObjectMapper mapper = new ObjectMapper();
+                    mapper.enable(SerializationFeature.INDENT_OUTPUT);
+                    mapper.writeValue(file, listOfNumber);
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
             }else {
                 System.out.println("Это не число!");
                 break;

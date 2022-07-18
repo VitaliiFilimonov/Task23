@@ -6,6 +6,6 @@ public interface IRecordStorage {
     void addRecord(Record record);
     void findRecord(Record record);
     void deleteRecord(Record record);
-    List<Record> getAllRecords();
+    List<String> getAllRecords();
 
 }

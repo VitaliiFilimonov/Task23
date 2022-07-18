@@ -19,7 +19,7 @@ import java.io.IOException;
 
 public class PhoneDirectory {
     private static final Logger LOGGER = LogManager.getLogger(PhoneDirectory.class);
-    //IRecordStorage recordStorage = new HashtableRecordStorage();
+    IRecordStorage recordStorage = new HashtableRecordStorage();
 
 
 

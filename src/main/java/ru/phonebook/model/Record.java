@@ -26,4 +26,8 @@ public class Record {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+    public String toString(){
+        return "Имя: " + getFio() + ", телефон: " + getPhone();
+    }
 }

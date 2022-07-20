@@ -56,7 +56,14 @@ public class HashtableRecordStorage implements IRecordStorage{
     }
 
     @Override
-    public Hashtable<String, String> getListOfNumber(){
-        return listOfNumber;
+    public List<Record> getListOfAllRecords() {
+        Enumeration allPhones = listOfNumber.keys();
+        List<Record> recordList = new ArrayList<>();
+
+        while (allPhones.hasMoreElements()) {
+            String phone = (String)allPhones.nextElement();
+            recordList.add(new Record(phone, listOfNumber.get(phone)));
+        }
+        return recordList;
     }
 }

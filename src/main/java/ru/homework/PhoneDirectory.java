@@ -1,8 +1,6 @@
 package ru.homework;
 
-import java.util.Enumeration;
-import java.util.Hashtable;
-import java.util.Scanner;
+import java.util.*;
 import java.util.regex.Pattern;
 
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -50,7 +48,10 @@ public class PhoneDirectory {
     }
 
     public void getListOfNumber() { // вывод списка
-        recordStorage.printAllRecords();
+        List<Record> recordList = recordStorage.getListOfAllRecords();
+        for (Record record: recordList){
+            System.out.println(record.toString());
+        }
     }
 
     public boolean validationPhoneNumber(String phoneNumber) { //проверка телефона
@@ -140,7 +141,6 @@ public class PhoneDirectory {
     }
 
     public static void main(String[] args) {
-
         PhoneDirectory p1 = new PhoneDirectory();
         p1.start();
     }

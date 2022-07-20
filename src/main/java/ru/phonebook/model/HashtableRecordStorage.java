@@ -21,17 +21,23 @@ public class HashtableRecordStorage implements IRecordStorage{
     @Override
     public boolean findRecordByPhone(String phone) {
         if (listOfNumber.containsKey(phone)) {
+            System.out.println("Найденное поле \n" + " Имя: " + listOfNumber.get(phone)
+                    + ", Номер телефона: " + phone);;
             LOGGER.info("Найденное поле \n" + " Имя: " + listOfNumber.get(phone)
                     + ", Номер телефона: " + phone);
             return true;
         }
-        return false;
+        else {
+            System.out.println("Поле не найдено!");
+            LOGGER.info("Поле не найдено!");
+            return false;
+        }
     }
 
     @Override
-    public void deleteRecord(Record record) {
+    public void deleteRecord(String phoneNumber) {
         if(!listOfNumber.isEmpty()){
-            listOfNumber.remove(record.getPhone());
+            listOfNumber.remove(phoneNumber);
             LOGGER.info("Запись удалена! ");
         }else{
             LOGGER.info("Таблица пуста! ");
@@ -39,16 +45,18 @@ public class HashtableRecordStorage implements IRecordStorage{
     }
 
     @Override
-    public List<String> getAllRecords() {
-        List<String> stringList = new ArrayList<>();
+    public void getAllRecords() {
         Enumeration allPhones = listOfNumber.keys();
 
         while (allPhones.hasMoreElements()) {
             String str = (String)allPhones.nextElement();
-            String str2 = "Имя: " + listOfNumber.get(str) + ", Номер телефона: "
-                    + str;
-            stringList.add(str2);
+            LOGGER.info("Имя: " + listOfNumber.get(str) + ", Номер телефона: "
+                    + str);
         }
-        return stringList;
+    }
+
+    @Override
+    public Hashtable<String, String> getListOfNumber(){
+        return listOfNumber;
     }
 }

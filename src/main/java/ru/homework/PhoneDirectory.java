@@ -40,32 +40,16 @@ public class PhoneDirectory {
 
     public void findPhoneNumber() { // найти по номеру
         String phoneNumber = enterPhoneNumber();
-        if (listOfNumber.containsKey(phoneNumber)){
-            System.out.println("Найденное поле \n" + " Имя: " + listOfNumber.get(phoneNumber)
-                    + ", Номер телефона: " + phoneNumber);
-        }else{
-            System.out.println("Поле не найдено!");
-        }
+        recordStorage.findRecordByPhone(phoneNumber);
     }
 
     public void delete() { //удаление
         String phoneNumber = enterPhoneNumber();
-        if(!listOfNumber.isEmpty()){
-            listOfNumber.remove(phoneNumber);
-            //System.out.println("Запись удалена! ");
-            LOGGER.info("Запись удалена!");
-        }else{
-            System.out.println("Таблица пуста! ");
-        }
+        recordStorage.deleteRecord(phoneNumber);
     }
 
     public void getListOfNumber() { // вывод списка
-        allPhones = listOfNumber.keys();
-        while (allPhones.hasMoreElements()) {
-            String str = (String)allPhones.nextElement();
-            System.out.println("Имя: " + listOfNumber.get(str) + ", Номер телефона: "
-                    + str);
-        }
+        recordStorage.getAllRecords();
     }
 
     public boolean validationPhoneNumber(String phoneNumber) { //проверка телефона
@@ -118,9 +102,8 @@ public class PhoneDirectory {
     }
 
     public void start() {
-        String filePath = "/home/user/Task22/JsonPhoneDirectory.json";
-        File file = new File(filePath);
-        recordStorage.
+        //String filePath = "/home/user/Task22/JsonPhoneDirectory.json";
+        //File file = new File(filePath);
 
         System.out.println("Команды: \n" +
                 "1 - add phoneNumber, name \n" +
@@ -140,13 +123,13 @@ public class PhoneDirectory {
                         "3 - delete phoneNumber \n" +
                         "4 - list \n" +
                         "5 - exit");
-                try{
-                    ObjectMapper mapper = new ObjectMapper();
-                    mapper.enable(SerializationFeature.INDENT_OUTPUT);
-                    mapper.writeValue(file, listOfNumber);
-                } catch (Exception e){
-                    e.printStackTrace();
-                }
+//                try{
+//                    ObjectMapper mapper = new ObjectMapper();
+//                    mapper.enable(SerializationFeature.INDENT_OUTPUT);
+//                    mapper.writeValue(file, listOfNumber);
+//                } catch (Exception e){
+//                    e.printStackTrace();
+//                }
             }else {
                 System.out.println("Это не число!");
                 break;

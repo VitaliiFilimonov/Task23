@@ -6,7 +6,7 @@ public class Record {
 
     public Record(){}
 
-    public Record(String fio, String phone) {
+    public Record(String phone, String fio) {
         this.fio = fio;
         this.phone = phone;
     }

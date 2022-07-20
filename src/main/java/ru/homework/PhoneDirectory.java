@@ -1,30 +1,26 @@
 package ru.homework;
 
-import java.util.*;
+import java.util.List;
+import java.util.Scanner;
 import java.util.regex.Pattern;
 
-import com.fasterxml.jackson.databind.SerializationFeature;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
 import ru.phonebook.model.HashtableRecordStorage;
 import ru.phonebook.model.IRecordStorage;
 import ru.phonebook.model.Record;
 
-import java.io.File;
-import java.io.IOException;
+
 
 public class PhoneDirectory {
     private static final Logger LOGGER = LogManager.getLogger(PhoneDirectory.class);
     IRecordStorage recordStorage = new HashtableRecordStorage();
-
     Scanner terminal = new Scanner(System.in);
 
 
-    public void addPhoneNumberAndName() { //добавить номер и имя
+    public void addPhoneNumberAndName() {
         String phoneNumber = enterPhoneNumber();
         while(recordStorage.isRecordExists(phoneNumber)){
             System.out.println("Запись уже создана! Повторите ввод номера: ");
@@ -33,28 +29,27 @@ public class PhoneDirectory {
         String name = enterName();
         Record record = new Record(phoneNumber, name);
         recordStorage.addRecord(record);
-        //System.out.println("Запись добавлена! ");
         LOGGER.info("Запись добавлена!");
     }
 
-    public void findPhoneNumber() { // найти по номеру
+    public void findPhoneNumber() {
         String phoneNumber = enterPhoneNumber();
         recordStorage.isRecordExists(phoneNumber);
     }
 
-    public void delete() { //удаление
+    public void delete() {
         String phoneNumber = enterPhoneNumber();
         recordStorage.deleteRecord(phoneNumber);
     }
 
-    public void getListOfNumber() { // вывод списка
+    public void getListOfNumber() {
         List<Record> recordList = recordStorage.getListOfAllRecords();
         for (Record record: recordList){
             System.out.println(record.toString());
         }
     }
 
-    public boolean validationPhoneNumber(String phoneNumber) { //проверка телефона
+    public boolean validationPhoneNumber(String phoneNumber) {
         return Pattern.matches("\\d{2}-\\d{2}-\\d{2}", phoneNumber);
     }
 
@@ -99,14 +94,9 @@ public class PhoneDirectory {
                 getListOfNumber();
                 break;
         }
-
-
     }
 
     public void start() {
-        //String filePath = "/home/user/Task22/JsonPhoneDirectory.json";
-        //File file = new File(filePath);
-
         System.out.println("Команды: \n" +
                 "1 - add phoneNumber, name \n" +
                 "2 - find phoneNumber \n" +
@@ -125,13 +115,6 @@ public class PhoneDirectory {
                         "3 - delete phoneNumber \n" +
                         "4 - list \n" +
                         "5 - exit");
-//                try{
-//                    ObjectMapper mapper = new ObjectMapper();
-//                    mapper.enable(SerializationFeature.INDENT_OUTPUT);
-//                    mapper.writeValue(file, listOfNumber);
-//                } catch (Exception e){
-//                    e.printStackTrace();
-//                }
             }else {
                 System.out.println("Это не число!");
                 break;

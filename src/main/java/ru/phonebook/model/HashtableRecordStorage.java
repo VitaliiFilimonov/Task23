@@ -44,16 +44,6 @@ public class HashtableRecordStorage implements IRecordStorage{
         }
     }
 
-    @Override
-    public void printAllRecords() {
-        Enumeration allPhones = listOfNumber.keys();
-
-        while (allPhones.hasMoreElements()) {
-            String str = (String)allPhones.nextElement();
-            LOGGER.info("Имя: " + listOfNumber.get(str) + ", Номер телефона: "
-                    + str);
-        }
-    }
 
     @Override
     public List<Record> getListOfAllRecords() {

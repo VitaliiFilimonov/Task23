@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import ru.homework.PhoneDirectory;
+
 
 public class HashtableRecordStorage implements IRecordStorage{
     private static final Logger LOGGER = LogManager.getLogger(HashtableRecordStorage.class);
@@ -19,10 +19,10 @@ public class HashtableRecordStorage implements IRecordStorage{
     }
 
     @Override
-    public boolean findRecordByPhone(String phone) {
+    public boolean isRecordExists(String phone) {
         if (listOfNumber.containsKey(phone)) {
             System.out.println("Найденное поле \n" + " Имя: " + listOfNumber.get(phone)
-                    + ", Номер телефона: " + phone);;
+                    + ", Номер телефона: " + phone);
             LOGGER.info("Найденное поле \n" + " Имя: " + listOfNumber.get(phone)
                     + ", Номер телефона: " + phone);
             return true;
@@ -45,7 +45,7 @@ public class HashtableRecordStorage implements IRecordStorage{
     }
 
     @Override
-    public void getAllRecords() {
+    public void printAllRecords() {
         Enumeration allPhones = listOfNumber.keys();
 
         while (allPhones.hasMoreElements()) {

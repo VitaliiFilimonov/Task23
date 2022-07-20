@@ -6,6 +6,7 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 
 import com.fasterxml.jackson.databind.SerializationFeature;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -27,7 +28,7 @@ public class PhoneDirectory {
 
     public void addPhoneNumberAndName() { //добавить номер и имя
         String phoneNumber = enterPhoneNumber();
-        while(recordStorage.findRecordByPhone(phoneNumber)){
+        while(recordStorage.isRecordExists(phoneNumber)){
             System.out.println("Запись уже создана! Повторите ввод номера: ");
             phoneNumber = enterPhoneNumber();
         }
@@ -40,7 +41,7 @@ public class PhoneDirectory {
 
     public void findPhoneNumber() { // найти по номеру
         String phoneNumber = enterPhoneNumber();
-        recordStorage.findRecordByPhone(phoneNumber);
+        recordStorage.isRecordExists(phoneNumber);
     }
 
     public void delete() { //удаление
@@ -49,7 +50,7 @@ public class PhoneDirectory {
     }
 
     public void getListOfNumber() { // вывод списка
-        recordStorage.getAllRecords();
+        recordStorage.printAllRecords();
     }
 
     public boolean validationPhoneNumber(String phoneNumber) { //проверка телефона

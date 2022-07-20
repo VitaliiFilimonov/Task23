@@ -3,12 +3,12 @@ package ru.phonebook.model;
 import java.util.List;
 import java.util.Optional;
 
-public class PhoneBookPhoneBookController implements IPhoneBookController {
+public class PhoneBookController implements IPhoneBookController {
 
     private final IRecordStorage recordStorage;
     private final IPhoneBookView view;
 
-    public PhoneBookPhoneBookController(IRecordStorage recordStorage, IPhoneBookView view) {
+    public PhoneBookController(IRecordStorage recordStorage, IPhoneBookView view) {
         this.recordStorage = recordStorage;
         this.view = view;
     }

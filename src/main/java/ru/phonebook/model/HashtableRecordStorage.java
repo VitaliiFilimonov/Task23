@@ -1,5 +1,6 @@
 package ru.phonebook.model;
 
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,11 +10,13 @@ import org.apache.logging.log4j.Logger;
 
 public class HashtableRecordStorage implements IRecordStorage {
     private static final Logger LOGGER = LogManager.getLogger(HashtableRecordStorage.class);
-    Hashtable<String, String> listOfNumber = new Hashtable();
+    private HashMap<String, String> listOfNumber = new HashMap<>();
 
     @Override
     public void addRecord(Record record) {
+        LOGGER.debug("addRecord {} start ", record);
         listOfNumber.put(record.getPhone(), record.getFio());
+        LOGGER.debug("addRecord SUCCESS {} end", record);
     }
 
     @Override

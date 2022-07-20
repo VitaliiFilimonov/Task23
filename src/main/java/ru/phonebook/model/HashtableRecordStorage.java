@@ -1,15 +1,13 @@
 package ru.phonebook.model;
 
-import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-
-public class HashtableRecordStorage implements IRecordStorage{
+public class HashtableRecordStorage implements IRecordStorage {
     private static final Logger LOGGER = LogManager.getLogger(HashtableRecordStorage.class);
     Hashtable<String, String> listOfNumber = new Hashtable();
 
@@ -20,40 +18,32 @@ public class HashtableRecordStorage implements IRecordStorage{
 
     @Override
     public boolean isRecordExists(String phone) {
-        if (listOfNumber.containsKey(phone)) {
-            System.out.println("Найденное поле \n" + " Имя: " + listOfNumber.get(phone)
-                    + ", Номер телефона: " + phone);
-            LOGGER.info("Найденное поле \n" + " Имя: " + listOfNumber.get(phone)
-                    + ", Номер телефона: " + phone);
-            return true;
-        }
-        else {
-            System.out.println("Поле не найдено!");
-            LOGGER.info("Поле не найдено!");
-            return false;
-        }
+        boolean result = listOfNumber.containsKey(phone);
+        LOGGER.trace("isRecordExists({}) : {}", phone, result);
+        return result;
     }
 
     @Override
     public void deleteRecord(String phoneNumber) {
-        if(!listOfNumber.isEmpty()){
-            listOfNumber.remove(phoneNumber);
-            LOGGER.info("Запись удалена! ");
-        }else{
-            LOGGER.info("Таблица пуста! ");
+        LOGGER.debug("deleteRecord {} start", phoneNumber);
+        String oldFio = listOfNumber.remove(phoneNumber);
+        if (oldFio == null) {
+            LOGGER.warn("deleteRecord {}: record did not exist", phoneNumber);
+        } else {
+            LOGGER.debug("deleteRecord {} success", phoneNumber);
         }
+
     }
 
 
     @Override
     public List<Record> getListOfAllRecords() {
-        Enumeration allPhones = listOfNumber.keys();
-        List<Record> recordList = new ArrayList<>();
-
-        while (allPhones.hasMoreElements()) {
-            String phone = (String)allPhones.nextElement();
-            recordList.add(new Record(phone, listOfNumber.get(phone)));
-        }
-        return recordList;
+        LOGGER.trace("getListOfAllRecords");
+        List<Record> records = listOfNumber.entrySet()
+                .stream()
+                .map(entry -> new Record(entry.getKey(), entry.getValue()))
+                .collect(Collectors.toList());
+        LOGGER.trace("getListOfAllRecords size: {}", records.size());
+        return records;
     }
 }

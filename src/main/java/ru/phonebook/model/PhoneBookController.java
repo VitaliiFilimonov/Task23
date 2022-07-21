@@ -54,27 +54,29 @@ public class PhoneBookController implements IPhoneBookController {
 
     void addPhone() {
         String phoneNumber = view.readPhoneNumber();
-        while(!view.isValidationPhoneNumberPass(phoneNumber)){
+        while(!view.isValidationPhoneNumberPass(phoneNumber)){ // проверка ввода
             phoneNumber = view.readPhoneNumber();
         }
 
-        // TODO проверка ввода
-        boolean ok = true; // ok = validate(phoneNUmber)
-        if (!ok) {
-            view.printError("Ошибка ввода");
-            return;
-        }
+//        // TODO проверка ввода
+//        boolean ok = true; // ok = validate(phoneNUmber)
+//        ok = view.isValidationPhoneNumberPass(phoneNumber);
+//        if (!ok) {
+//            view.printError("Ошибка ввода");
+//            return;
+//        }
 
         String fio = view.readFio();
-        while(!view.isValidationFioPass(fio)){
+        while(!view.isValidationFioPass(fio)){ // проверка ввода
             fio = view.readFio();
         }
-        // TODO проверка ввода
-        ok = true; // ok = validate(fio)
-        if (!ok) {
-            view.printError("Ошибка ввода");
-            return;
-        }
+//        // TODO проверка ввода
+//        ok = true; // ok = validate(fio)
+//        ok = view.isValidationFioPass(fio);
+//        if (!ok) {
+//            view.printError("Ошибка ввода");
+//            return;
+//        }
 
         Record record = new Record(phoneNumber, fio);
         recordStorage.addRecord(record);

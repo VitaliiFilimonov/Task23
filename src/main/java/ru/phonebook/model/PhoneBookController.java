@@ -76,10 +76,6 @@ public class PhoneBookController implements IPhoneBookController {
 
     void deletePhone() {
         String phoneNumber = view.readPhoneNumber();
-        // проверка ввода
-        while(!view.isValidationPhoneNumberPass(phoneNumber)){
-            phoneNumber = view.readPhoneNumber();
-        }
         recordStorage.deleteRecord(phoneNumber);
     }
 

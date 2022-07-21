@@ -15,4 +15,8 @@ public interface IPhoneBookView {
     void printError(String error);
 
     String readFio();
+
+    boolean isValidationPhoneNumberPass(String phoneNumber);
+
+    boolean isValidationFioPass(String fio);
 }

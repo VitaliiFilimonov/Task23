@@ -20,7 +20,12 @@ public class PhoneView implements IPhoneBookView{
                 "4 - list \n" +
                 "5 - exit");
         System.out.println("Введите номер команды: ");
-        command = terminal.nextInt();
+        if(terminal.hasNextInt()){
+            command = terminal.nextInt();
+        }else {
+            System.out.println("Неверный ввод! ");
+            return Optional.empty();
+        }
 
         switch (command){
             case 1:

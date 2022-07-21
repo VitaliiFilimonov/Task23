@@ -44,11 +44,6 @@ public class PhoneView implements IPhoneBookView{
     }
 
     @Override
-    public Record readRecord() {
-        return null;
-    }
-
-    @Override
     public String readPhoneNumber() {
         System.out.println("Введите номер телефона(в формате 12-34-56): ");
         String phoneNumber = terminal.next();

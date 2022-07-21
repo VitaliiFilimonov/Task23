@@ -6,8 +6,6 @@ import java.util.Optional;
 public interface IPhoneBookView {
     Optional<Command> nextCommand();
 
-    Record readRecord();
-
     String readPhoneNumber();
 
     void showRecords(List<Record> recordList);
